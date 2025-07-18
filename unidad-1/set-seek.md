@@ -21,3 +21,17 @@ Es cuando se utiliza programacion y otro tipo de herramientas en un sistema auto
 ¿Como podrias aplicar lo que has visto en tu perfil profesional? 
 
 Me gustaria aplicarlo en creacion de marcas o de logos ya que si se hace de la forma correcta el logo diseñado va a tener su identidad propia y es probable que nunca sea igual en cada uno de los elementos en los que se utilize lo que lo hace muy innovador ya que se puede jugar con diferentes parametros dependiendo de lo que se quiere representar.
+
+### Actividad 03 
+
+inputs: en este caso son los botones y el acelerometro que tiene la microbit. ademas del serial por el que se interactua al presionar send love. 
+
+outputs: las formas que se generan en los leds y en la pagina al interactuar con los botones y el acelerometro. 
+
+procesos: es el programa que procesa los inputs y las instrucciones que se escriben en los editores. 
+
+### Actividad 04 
+
+[Enlace a mi programa en la web](https://editor.p5js.org/saravaristi/sketches/S5ur-IYdk)
+
+
