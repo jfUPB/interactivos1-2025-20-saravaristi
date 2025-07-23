@@ -34,4 +34,34 @@ procesos: es el programa que procesa los inputs y las instrucciones que se escri
 
 [Enlace a mi programa en la web](https://editor.p5js.org/saravaristi/sketches/S5ur-IYdk)
 
+```
+function setup() {
+  createCanvas(400, 400);
+}
+
+function draw() {
+  background (5,5);
+  stroke(paletteLerp([
+    ['purple', 0],
+    ['pink', 0.25],
+    ['cyan', 0.45],
+    ['violet', 0.60],
+    ['orange',0.75],
+    ['magenta', 1]
+  ], millis() / 10000 % 10));
+   fill(paletteLerp([
+    ['purple', 0],
+    ['pink', 0.25],
+    ['cyan', 0.45],
+    ['violet', 0.60],
+    ['orange',0.75],
+    ['magenta', 1]
+  ], millis() / 10000 % 10));
+ 
+  
+  circle (mouseX,mouseY,random(5,20));
+   
+}
+```
+<img width="1351" height="899" alt="image" src="https://github.com/user-attachments/assets/af245650-bbdc-40eb-b4d0-4b3ca5c2a80e" />
 
