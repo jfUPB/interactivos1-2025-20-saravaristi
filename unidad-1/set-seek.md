@@ -34,7 +34,7 @@ procesos: es el programa que procesa los inputs y las instrucciones que se escri
 
 [Enlace a mi programa en la web](https://editor.p5js.org/saravaristi/sketches/S5ur-IYdk)
 
-```
+``` js
 function setup() {
   createCanvas(400, 400);
 }
