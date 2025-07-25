@@ -7,7 +7,7 @@ Se hizo un sistema fisico interactivo donde se tiene de inputs un microbit, su b
 ### Actividad 06 
 [Enlace al codigo de la actividad 6](https://editor.p5js.org/saravaristi/sketches/2lKtahcFY) 
 
-```
+``` js
 let x = 200;
 let port;
   let connectBtn;
@@ -60,7 +60,7 @@ let port;
 
 ```
 
-```
+``` py
 from microbit import *
 
 uart.init(baudrate=115200)
