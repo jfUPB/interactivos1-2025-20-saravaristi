@@ -37,4 +37,150 @@ Mi idea inicial no es tan diferente de mi idea actual, en general quiero hacer s
 
 4. El tutorial de la Actividad 05 te llevó paso a paso. ¿Cómo te sentiste con ese método de aprendizaje? ¿Te dio seguridad o preferirías haberlo intentado por tu cuenta desde el principio?
 
-En lo personal me gusto mucho este modelo de aprendizaje, ya que nos mostraba paso a paso de la creación del programa, como se haccia y para que servia cada parque que lo compone, lo que me parecio bastante interesante ya que es mas facil comprender como funciona un programa desde cero para ya luego haacerlo tu mismo, porque en mi opinion si se hace el programa sin conocimiento ninguno la persona puede no tener el mismo nivel de aprendizaje que al ver primero como se hace el programa y luego llevarlo a la practica.
+En lo personal me gusto mucho este modelo de aprendizaje, ya que nos mostraba paso a paso de la creación del programa, como se haccia y para que servia cada parque que lo compone, lo que me parecio bastante interesante ya que es mas facil comprender como funciona un programa desde cero para ya luego haacerlo tu mismo, porque en mi opinion si se hace el programa sin conocimiento ninguno la persona puede no tener el mismo nivel de aprendizaje que al ver primero como se hace el programa y luego llevarlo a la practica. 
+
+### Actividad 08 
+
+Mi codigo 
+``` js
+let x = 200;
+let port;
+  let connectBtn;
+  let connectionInitialized = false;
+
+  function setup() {
+    createCanvas(400, 400);
+    background(220);
+    port = createSerial();
+    connectBtn = createButton("Connect to micro:bit");
+    connectBtn.position(80, 300);
+    connectBtn.mousePressed(connectBtnClick);
+  }
+
+  function draw() {
+    background(220);
+
+    if (port.opened() && !connectionInitialized) {
+      port.clear();
+      connectionInitialized = true;
+    }
+
+    if (port.availableBytes() > 0) {
+      let dataRx = port.read(1);
+      if (dataRx == "A") {
+      x-=5;
+      } else if (dataRx == "B") {
+      x+=5;
+      }
+    }
+
+    
+    circle(x,height/2,60);
+
+    if (!port.opened()) {
+      connectBtn.html("Connect to micro:bit");
+    } else {
+      connectBtn.html("Disconnect");
+    }
+  }
+
+  function connectBtnClick() {
+    if (!port.opened()) {
+      port.open("MicroPython", 115200);
+      connectionInitialized = false;
+    } else {
+      port.close();
+    }
+  }
+
+```
+
+``` py
+from microbit import *
+
+uart.init(baudrate=115200)
+display.show(Image.SNAKE)
+
+while True:
+    if button_a.is_pressed():
+        uart.write('A')
+    if button_b.is_pressed():
+        uart.write('B')
+    
+        
+    sleep(100)
+
+```
+Codigo de Valentina Martinez 
+
+``` py
+from microbit import *
+
+uart.init(baudrate=115200)
+display.show(Image.DUCK)
+
+while True:
+
+    if button_a.was_pressed():
+        uart.write('A')
+    if button_b.was_pressed():
+        uart.write('B')    
+    else:
+        uart.write('N')
+
+    sleep(100)
+```
+``` js
+  let port;
+  let x =200;
+  let connectBtn;
+  let connectionInitialized = false;
+
+  function setup() {
+    createCanvas(400, 400);
+    background(220);
+    port = createSerial();
+    connectBtn = createButton("Connect to micro:bit");
+    connectBtn.position(80, 300);
+    connectBtn.mousePressed(connectBtnClick);
+  }
+
+  function draw() {
+    background(220);
+
+    if (port.opened() && !connectionInitialized) {
+      port.clear();
+      connectionInitialized = true;
+    }
+
+    if (port.availableBytes() > 0) {
+      let dataRx = port.read(1);
+      if (dataRx == "A") {
+       x-=100;
+      } 
+      if (dataRx == "B") {
+       x+=100;
+      }
+      else if (dataRx == "N") {
+      }
+    }
+
+    circle(x,150,100);
+
+    if (!port.opened()) {
+      connectBtn.html("Connect to micro:bit");
+    } else {
+      connectBtn.html("Disconnect");
+    }
+  }
+
+  function connectBtnClick() {
+    if (!port.opened()) {
+      port.open("MicroPython", 115200);
+      connectionInitialized = false;
+    } else {
+      port.close();
+    }
+  }
+``` 
+La mas grande diferencia que veo entre el codigo de mi compañera y el mio es que el circulo solo se mueve si el boton A y B han sido presionados, a diferencia de mi codigo que solo funcion cuando los botones A y B estan siendo presionados en el momento respectivamente, en ambos casos el boton A funciona para mover el circulo hacia la izquierda y el boton B para mover el circulo a la derecha, sumandole y restandole valores dependiendo de la dirección a la que se quiere mover el circulo, en mi codigo solo se suman o se restan 5 pixeles hacia la derecha y la izquierda mientras que en el codigo de mi compañera se mueve el circulo 100 pixeles dependiendo de la dirección deseada por lo que creo que en su caso esto se debe al tamaño del circulo que es mucho mayor en tamaño que el mio. Lo demas del codigo veo que no tiene cambios significativos ya que ambas usamos de base el codigo que se nos dio para la actividad 05.
