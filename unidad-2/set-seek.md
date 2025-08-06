@@ -21,7 +21,66 @@ Los eventos es cuando el programa esta esperando que se cumplan un conjuntos de 
 Hay algunas como actualizar variables, leer tiempo, alternaltar el estado de los pixeles entre prendido y apagado, calcular cuanto tiempo ha pasado desde la ultima actualización de cada pixel, calcular el tiempo restante para cada pixel 
 
 ### Actividad 02 
+``` py
+from microbit import *
+import utime
 
+class Pixel:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def turn_on(self):
+        display.set_pixel(self.x, self.y, 9)
+
+    def turn_off(self):
+        display.set_pixel(self.x, self.y, 0)
+
+
+RED = Pixel(2, 0)
+YELLOW = Pixel(2, 1)
+GREEN = Pixel(2, 2)
+
+STATE_RED = 0
+STATE_GREEN = 1
+STATE_YELLOW = 2
+
+DURATION_RED = 3000
+DURATION_GREEN = 3000
+DURATION_YELLOW = 3000
+
+current_state = STATE_RED
+start_time = utime.ticks_ms()
+
+while True:
+    RED.turn_off()
+    YELLOW.turn_off()
+    GREEN.turn_off()
+
+    now = utime.ticks_ms()
+    elapsed = utime.ticks_diff(now, start_time)
+
+    if current_state == STATE_RED:
+        RED.turn_on()
+        if elapsed > DURATION_RED:
+            current_state = STATE_GREEN
+            start_time = now
+
+    elif current_state == STATE_GREEN:
+        GREEN.turn_on()
+        if elapsed > DURATION_GREEN:
+            current_state = STATE_YELLOW
+            start_time = now
+
+    elif current_state == STATE_YELLOW:
+        YELLOW.turn_on()
+        if elapsed > DURATION_YELLOW:
+            current_state = STATE_RED
+            start_time = now
+
+    sleep(100)
+```
+En este codigo se tiene como evento el cambiar del color y existen los estados STATE_RED, STATE_YELLOW y STATE_GREEN donde cada uno de estos tiene acciones como obttener el tiempo actual y su estado actual para ya luego si el tiempo concurrido es menor a la duración predeterminada de cada color se cambia al siguiente estado 
 
 ### Actividad 03 
 
@@ -85,3 +144,4 @@ current_state = STATE_SMILE
         current_state = STATE_SAD
 ```
 En este caso el vector de prueba sirve para coomprobar que una vez pase el tiempo necesario se cambbia de estado, en este caso iniciamos con STATE_SMILE y al agostarse el tiempo la expresión cambia a STATE_SAD
+
