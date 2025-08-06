@@ -27,10 +27,13 @@ Hay algunas como actualizar variables, leer tiempo, alternaltar el estado de los
 
 1. Explica por qué decimos que este programa permite realizar de manera concurrente varias tareas.
 
-El programa si permmite realizar varias tareas a la vez ya que se tiene 3 caritas que se van cambiado segun el tiempo que tenga cada una, ademas de poder cambiar las caras manualmente usando el boton A
+El programa si permmite realizar varias tareas a la vez ya que se tiene 3 caritas que se van cambiado segun el tiempo que tenga cada una, ademas de poder cambiar las caras manualmente usando el boton A.
 
 2. Identifica los estados, eventos y acciones en el programa.
 
+En este programa se tiene como evento "mostrar expresiones" existen varios estados, entre ellos estan STATE_INIT, STATE_HAPPY, STATE_SMILE, STATE_SAD, en cuanto a acciones son todas estasn que se encuentran dentro de cada uno de los estados para que cada uno de estos se cumpla correctamente, algunas de las acciones presentes en el codigo son: display.show(Image.HAPPY), start_time = utime.ticks_ms(), interval = HAPPY_INTERVAL y current_state = STATE_HAPPY
+
 3. Describe y aplica al menos 3 vectores de prueba para el programa. Para definir un vector de prueba debes llevar al sistema a un estado, generar los eventos y observar el estado siguiente y las acciones que ocurrirán. Por tanto, un vector de prueba tiene unas condiciones iniciales del sistema, unos resultados esperados y los resultados realmente obtenidos. Si el resultado obtenido es igual al esperado entonces el sistema pasó el vector de prueba, de lo contrario el sistema puede tener un error.
 
-   
+VECTOR DE PRUEBA 1:
+
