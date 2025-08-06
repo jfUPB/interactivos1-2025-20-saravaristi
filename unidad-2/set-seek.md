@@ -37,3 +37,51 @@ En este programa se tiene como evento "mostrar expresiones" existen varios estad
 
 VECTOR DE PRUEBA 1:
 
+``` py
+current_state = STATE_INIT
+
+    if current_state == STATE_INIT:
+        display.show(Image.HAPPY)
+        start_time = utime.ticks_ms()
+        interval = HAPPY_INTERVAL
+        current_state = STATE_HAPPY
+```
+
+En este vector de prueba se espera que pase del estado inicial que es STATE_INIT a STATE_HAPPY 
+
+VECTOR DE PRUEBA 2: 
+
+``` py
+    current_state = STATE_HAPPY
+    display.show(Image.HAPPY)
+    start_time = utime.ticks_ms()
+    interval = HAPPY_INTERVAL
+
+    button_a.was_pressed()
+
+    if current_state == STATE_HAPPY and button_pressed:
+        display.show(Image.SAD)
+        start_time = utime.ticks_ms()
+        interval = SAD_INTERVAL
+        current_state = STATE_SAD
+```
+
+Este vector de prueba sirve comproobar que al presionar el boton A se cambie la expresión en este caso se tiene como estado inicial STATE_HAPPY y al presionar el boton A se debe de cambiar a STATE_SAD 
+
+VECTOR DE PRUEBA 3: 
+
+``` py
+current_state = STATE_SMILE
+    display.show(Image.SMILE)
+    start_time = utime.ticks_ms()
+    interval = SMILE_INTERVAL
+
+    utime.sleep_ms(interval + 100)
+
+    if current_state == STATE_SMILE and utime.ticks_diff(utime.ticks_ms(), start_time) > interval:
+        display.show(Image.SAD)
+        start_time = utime.ticks_ms()
+        interval = SAD_INTERVAL
+        current_state = STATE_SAD
+```
+En este caso el vector de prueba sirve para coomprobar que una vez pase el tiempo necesario se cambbia de estado, en este caso iniciamos con STATE_SMILE y al agostarse el tiempo la expresión cambia a STATE_SAD
