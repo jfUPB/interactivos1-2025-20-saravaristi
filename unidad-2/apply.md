@@ -3,6 +3,7 @@
 ## 🛠 Fase: Apply 
 
 ### Actividad 04 
+<img width="450" height="1214" alt="DIAGRAMA SISTEMAS FISICOS" src="https://github.com/user-attachments/assets/91cf259e-cd32-4c8e-b55e-a12efd5965f1" /> 
 
 ### Actividad 05 
 
@@ -64,4 +65,5 @@ while True:
         tiempo_restante = TIEMPO_INICIAL
 
 ```
+
 
