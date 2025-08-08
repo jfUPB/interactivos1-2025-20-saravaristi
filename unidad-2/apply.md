@@ -9,7 +9,6 @@
 ``` py
 from microbit import *
 import utime
-import music
 
 MIN_TIEMPO = 10
 MAX_TIEMPO = 60
@@ -60,9 +59,9 @@ while True:
 
     elif estado == "STATE_EXPLODE":
         display.show(Image.SKULL)
-        music.play(music.WAWAWAWAA)
         utime.sleep(2)
         estado = "STATE_CONFIG"
         tiempo_restante = TIEMPO_INICIAL
 
 ```
+
