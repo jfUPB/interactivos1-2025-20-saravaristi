@@ -12,7 +12,7 @@ Una maquina de estados es un sistema que esta compuesto por eventos, estados, ac
 
 2. Explica por qué la técnica de máquina de estados es tan útil para gestionar la “concurrencia” (atender un temporizador y botones “al mismo tiempo”) en un dispositivo con un solo hilo de ejecución como el micro:bit. ¿Qué problema soluciona en comparación con usar funciones como sleep()?
 
-
+Como tal la maquina de estados permite que el microbit intercale entre cada ciclo la revisión de los temporizadores y las entradas sin detenerse, lo que se podria considerar como "concurrencia" mientras que si se usa sleep hay riesgo de que el microbit se pierda de estados o acciones importantes
 
 3. Imagina que tienes que añadir una nueva funcionalidad a la bomba temporizada: si se agita (shake) el micro:bit mientras la cuenta regresiva está activa, el tiempo se reduce a la mitad. ¿Cómo modificarías tu diagrama de máquina de estados para incluir este nuevo evento y acción?
 
@@ -38,7 +38,13 @@ Para hacer el codigo lo intente hacer la forma mas logica y simple posible para 
 
 4. Ahora que entiendes el patrón de máquina de estados, ¿En qué otro tipo de proyecto o sistema de entretenimiento digital crees que podrías aplicarlo?
 
+Creo que como tal se puede implementar para otro tipo de alicaciones como podrian ser juegos como tamagochi donde al presionar ciertos botones se puede alimentar y jugar con la mascota virtual, esto corresponde justo a un sistema de eventos, estados y acciones donde al presionar un boton en especifico se cambia de evento y con ello aparecen estados y acciones especificos para cumplir con el evento y poder mmantener a la mascota virtual con vida
+
 ### Actividad 07 
+
+Compañera de la actividad: Valentina Martinez Rivas 
+
+Critica constructiva: Como tal el codigo lo veo bastante bien estructurado, pero hubiese sido mejor hacer un diagrama para comprdnder de mejor forma el codigo y su estructura y como se conectan los eventos y estados uno con el otro para tenerlo mucho mas claro a la hora de coddificar. En cuanto al codigo esta bien hecho y es claro en cada uno de los eventos, estados y accione, pero se podria optimizar de mejor forma dejando de utilizas sleep() tan frecuentemente ya que esto puede traer problemas dentro del codigo, otro consejo que puedo dar es el de crear mas vectores de prueba, por ejemplo uno donde se presionen los botones A y B mientras la bo,ba ya se cuentra armada para ver si eso afecta en el tiempo configurado por el usuario dentro del temporizador de al bomba.
 
 ### Actividad 08 
 
@@ -61,4 +67,5 @@ Creo que calificaria con un 4 la dificultad de pasar del analisis ya que al inic
 5. Comentario adicional: ¿Hay algo más que te gustaría compartir sobre tu proceso de aprendizaje en esta unidad? ¿Algún momento de frustración o de “¡Aha!” que quieras destacar?
 
 Creo que como tal en toda la unidad tuve momentos de frustación pero tambien de descubrimientos y de satisfacción al lograr las actividades planteadas sin necesidad de investigar por fuera de los recursos dados, lo que mas resaltaria es la importancia de la practica ya que esta te ayuda demasiado a comprender temas y alcanzar metas a corto plazo que en este caso seria cada actividad de la unidad
+
 
