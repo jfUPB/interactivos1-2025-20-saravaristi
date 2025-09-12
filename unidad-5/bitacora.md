@@ -36,17 +36,49 @@ Este resultado se ve de estar forma ya que esta en binario y los caracteres no l
 ### 2. Captura el resultado del experimento anterior. Lo que ves ¿Cómo está relacionado con esta línea de código? 
 <img width="1254" height="376" alt="image" src="https://github.com/user-attachments/assets/b023e533-ba57-4987-b74a-5505e372f130" />
 
+Esto se relaciona con el codigo de forma que cada 6 bytes representan un paquete completo con el formato >2h2B
 ### 3. ¿Qué ventajas y desventajas ves en usar un formato binario en lugar de texto en ASCII? 
 
 Tengo entendido que una de las ventajas que hay al usar binario en lugar de texto en ASCII es que el binario ocupa menos lugar que el texto y mayor velocidad al interpretar los datos, por lo que supongo que una de las desventajas es que el binario no es entendible a plena vista 
 
 ### 4. Captura el resultado del experimento. ¿Cuántos bytes se están enviando por mensaje? ¿Cómo se relaciona esto con el formato '>2h2B'? ¿Qué significa cada uno de los bytes que se envían? 
 
+<img width="1241" height="257" alt="image" src="https://github.com/user-attachments/assets/b192d877-0c86-4ba2-891e-ef9fa8ad3e15" />
 
+Se estan mandando 6 bytes al hacer el gesto shake con el microbit, al usar >2h2B se estan enviado bloqjues de 6 bytes, en este caso 07 f8 son el xValue, fb 94 son el yValue y 00 es aState y 00 es bState
 
 ### 5. Recuerda de la unidad anterior que es posible enviar números positivos y negativos para los valores de xValue y yValue. ¿Cómo se verían esos números en el formato '>2h2B'? 
 
-### 6. 
+en >2h2b xe ve normal en en hex, por ejemplo 03 E8, pero si esta en negativo se ve en complemento a dos, por ejemplo FC 08 
+
+### 6. ¿Qué diferencias ves entre los datos en ASCII y en binario? ¿Qué ventajas y desventajas ves en usar un formato binario en lugar de texto en ASCII? ¿Qué ventajas y desventajas ves en usar un formato ASCII en lugar de binario? 
+
+<img width="1236" height="282" alt="image" src="https://github.com/user-attachments/assets/c93f7ea8-1cf4-4e1b-a7dc-44f83fc244e3" />
+
+Esta parte es binario 04 c0 fc 04 00 00, luego le sigue esta parte en ASCII 04 c0 fc 04 00 00, esta parte es ASCII como texto 31 32 31 36 2c 2d 31 30 32 30 2c 46 61 6c 73 65 2c 46 61 6c 73 65 0a ("1216,-1020,False,False\n"). En cuanto a las ventajs y desventajas de usar binario en vez de ASCII estas son que es mucho mejor para codigos que requieren usar menos espacio de texto, pero no es entendible a la hora de leerlo, por otro lado el ASCII es mas usado que el binario ya que la mayoria de programas entiende texto, pero es mucho mas pesado que el binario 
+
+## Actividad 03
+
+### 1. Compara el código de la unidad anterior relacionado con la recepción de los datos seriales que ves ahora. ¿Qué cambios observas? 
+
+### 2. ¿Qué ves en la consola? ¿Por qué crees que se produce este error? 
+
+<img width="805" height="106" alt="image" src="https://github.com/user-attachments/assets/32ff3c70-c866-47ff-a1d4-46159a3a869d" />
+
+### 3. Analiza el código, observa los cambios. Ejecuta y luego observa la consola. ¿Qué ves? 
+
+<img width="796" height="81" alt="image" src="https://github.com/user-attachments/assets/eb9dcca3-669f-4920-b562-24d0698b391d" />
+
+### 4. ¿Qué cambios tienen los programas y ¿Qué puedes observar en la consola del editor de p5.js? 
+
+En este caso la consola funciona de forma normal, sin errores 
+
+## Actividad 04 
+
+
+
+
+
 
 
 
