@@ -89,7 +89,16 @@ En este caso la consola funciona de forma normal, sin errores
 
 ### 6. ¿Cuál es la diferencia entre slice y splice? ¿Por qué se usa splice justo después de slice? 
 
-### 7. 
+### 7. A la siguiente parte del código se le conoce como programación funcional ¿Cómo opera la función reduce?
+
+### 8. ¿Por qué se compara el checksum enviado con el calculado? ¿Para qué sirve esto? 
+
+### 9. En el código anterior qué hace la instrucción continue? ¿Por qué? 
+
+### 10. ¿Qué es un DataView? ¿Para qué se usa? 
+
+### 11. ¿Por qué es necesario hacer estas conversiones y no simplemente se toman tal cual los datos del buffer?
+
 
 
 
