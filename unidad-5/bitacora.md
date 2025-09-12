@@ -29,15 +29,25 @@ Estos eventos se generan cuando el boton A o B estam siendo presionados, en este
 
 ### 1. Captura el resultado del experimento anterior. ¿Por qué se ve este resultado? 
 
+<img width="1239" height="365" alt="image" src="https://github.com/user-attachments/assets/9a6b20a3-a5c5-43a1-b28d-244cfb34b7ed" />
+
+Este resultado se ve de estar forma ya que esta en binario y los caracteres no los reconoce como texto, por lo que tiene que hacerse visible usando otro formato
+
 ### 2. Captura el resultado del experimento anterior. Lo que ves ¿Cómo está relacionado con esta línea de código? 
+<img width="1254" height="376" alt="image" src="https://github.com/user-attachments/assets/b023e533-ba57-4987-b74a-5505e372f130" />
 
 ### 3. ¿Qué ventajas y desventajas ves en usar un formato binario en lugar de texto en ASCII? 
 
+Tengo entendido que una de las ventajas que hay al usar binario en lugar de texto en ASCII es que el binario ocupa menos lugar que el texto y mayor velocidad al interpretar los datos, por lo que supongo que una de las desventajas es que el binario no es entendible a plena vista 
+
 ### 4. Captura el resultado del experimento. ¿Cuántos bytes se están enviando por mensaje? ¿Cómo se relaciona esto con el formato '>2h2B'? ¿Qué significa cada uno de los bytes que se envían? 
+
+
 
 ### 5. Recuerda de la unidad anterior que es posible enviar números positivos y negativos para los valores de xValue y yValue. ¿Cómo se verían esos números en el formato '>2h2B'? 
 
 ### 6. 
+
 
 
 
