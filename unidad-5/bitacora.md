@@ -75,6 +75,282 @@ En este caso la consola funciona de forma normal, sin errores
 
 ## Actividad 04 
 
+### Proceso 
+
+Para confirmar que el codigo dado por el profe hacia que el microbit estuviese mandando datos en binario lo revise con la aplicación de conexión de datos y en efecto si estaba mandando datos en binario 
+
+<img width="1253" height="381" alt="image" src="https://github.com/user-attachments/assets/c7e79d7d-8bc0-4bd9-8a03-43ab5067ecb8" />
+
+Luego de eso ya pase a la parte del codigo, lo que hice fue cambiar el connectMicrobit, para que permitiera el protocolo de datos binarios y en consola se vieran los valores de xValue, yValue, aState y bState, pero a la hora de conectar el microbit los datos de xValue y yValue se iban muy lejos del canvas y no se mostraban en pantalla, eso pasaba debido a esta linea de codigo donde se convertian los valores y la tuve que cambiar a una forma muy similar a una usada en el ejemplo dado por el profesor, pero si muestra los datos del microbit
+
+parte a cambiar:
+
+```js
+if (buffer.length === 8) { // paquete completo
+            const xRaw = (buffer[1] << 8) | buffer[2];
+            const yRaw = (buffer[3] << 8) | buffer[4];
+            const aPressed = buffer[5] === 1;
+            const bPressed = buffer[6] === 1;
+            const checksum = buffer[7];
+```
+
+https://github.com/user-attachments/assets/a296c34f-c854-4a1d-a83f-31ca3f3ba44c
+
+Luego de solucionar eso, ya los datos binarios se mostraban y el programa funciona normalmente
+
+Codigo modificado
+
+```js
+// P_2_2_3_02
+//
+// Generative Gestaltung – Creative Coding im Web
+// ISBN: 978-3-87439-902-9, First Edition, Hermann Schmidt, Mainz, 2018
+// Benedikt Groß, Hartmut Bohnacker, Julia Laub, Claudius Lazzeroni
+// with contributions by Joey Lee and Niels Poldervaart
+// Copyright 2018
+//
+// http://www.generative-gestaltung.de
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/**
+ * form mophing process by connected random agents
+ * two forms: circle and line
+ *
+ * MOUSE
+ * click               : start a new circe
+ * position x/y        : direction and speed of floating
+ *
+ * KEYS
+ * 1-2                 : fill styles
+ * 3-4                 : form styles circle/line
+ * arrow up/down       : step size +/-
+ * f                   : freeze. loop on/off
+ * Delete/Backspace    : clear display
+ * s                   : save png
+ */
+
+'use strict';
+
+var formResolution = 15;
+var stepSize = 2;
+var distortionFactor = 1;
+var initRadius = 150;
+var centerX;
+var centerY;
+var x = [];
+var y = [];
+
+var filled = false;
+var freeze = false;
+var drawMode = 1;
+
+let port;
+let reader;
+let microbitX = 0;
+let microbitY = 0;
+let buttonA = 1;
+let buttonB = 0;
+let connectButton;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+
+  // init shape
+  centerX = width / 2;
+  centerY = height / 2;
+  var angle = radians(360 / formResolution);
+  for (var i = 0; i < formResolution; i++) {
+    x.push(cos(angle * i) * initRadius);
+    y.push(sin(angle * i) * initRadius);
+  }
+
+  stroke(0, 50);
+  strokeWeight(0.75);
+  background(255);
+  setupMicrobitButton();
+}
+
+function setupMicrobitButton() {
+  connectButton = createButton("Conectar micro:bit");
+  connectButton.position(20, 20);
+  connectButton.mousePressed(connectMicrobit);
+}
+
+async function connectMicrobit() {
+  try {
+    port = await navigator.serial.requestPort();
+    await port.open({ baudRate: 115200 });
+    reader = port.readable.getReader();
+    console.log("Conectado al micro:bit");
+
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      if (!value) continue;
+
+      const dataBytes = new Uint8Array(value);
+
+      // asegurarnos de que sea un paquete completo (1 byte cabecera + 6 datos + 1 checksum = 8)
+      if (dataBytes.length === 8 && dataBytes[0] === 0xAA) {
+        let buffer = dataBytes.buffer;
+        let view = new DataView(buffer);
+
+        let xRaw = view.getInt16(1, false); // big-endian
+        let yRaw = view.getInt16(3, false);
+        let aPressed = view.getUint8(5) === 1;
+        let bPressed = view.getUint8(6) === 1;
+        let checksum = view.getUint8(7);
+
+        // Verificación de checksum
+        let sum = 0;
+        for (let i = 1; i < 7; i++) sum += dataBytes[i];
+        let calculatedChecksum = sum % 256;
+
+        if (checksum === calculatedChecksum) {
+          console.log("Paquete válido:", xRaw, yRaw, aPressed, bPressed);
+
+          // Actualizar variables globales
+          microbitX = map(xRaw, -1024, 1024, 0, width);
+          microbitY = map(yRaw, -1024, 1024, 0, height);
+          buttonA = aPressed;
+          buttonB = bPressed;
+
+          // Acciones equivalentes a teclas '1' y '2'
+          if (aPressed) filled = false; // tecla '1'
+          if (bPressed) filled = true;  // tecla '2'
+
+        } else {
+          console.warn("Checksum incorrecto, paquete descartado");
+        }
+      }
+    }
+  } catch (err) {
+    console.error("Error conectando micro:bit:", err);
+  }
+}
+
+
+// Funciones para usar en vez de mouseX/mouseY
+function getMicrobitMouseX() {
+  return microbitX || mouseX;
+}
+function getMicrobitMouseY() {
+  return microbitY || mouseY;
+}
+
+function draw() {
+  // floating towards mouse position
+ centerX += (getMicrobitMouseX() - centerX) * 0.01;
+centerY += (getMicrobitMouseY() - centerY) * 0.01;
+
+  // calculate new points
+  for (var i = 0; i < formResolution; i++) {
+    x[i] += random(-stepSize, stepSize);
+    y[i] += random(-stepSize, stepSize);
+  }
+
+  if (filled) {
+    fill(random(255));
+  } else {
+    noFill();
+  }
+
+  switch (drawMode) {
+  case 1: // circle
+    beginShape();
+    // start controlpoint
+    curveVertex(x[formResolution - 1] + centerX, y[formResolution - 1] + centerY);
+
+    // only these points are drawn
+    for (var i = 0; i < formResolution; i++) {
+      curveVertex(x[i] + centerX, y[i] + centerY);
+    }
+    curveVertex(x[0] + centerX, y[0] + centerY);
+
+    // end controlpoint
+    curveVertex(x[1] + centerX, y[1] + centerY);
+    endShape();
+    break;
+  case 2: // line
+    beginShape();
+    // start controlpoint
+    curveVertex(x[0] + centerX, y[0] + centerY);
+
+    // only these points are drawn
+    for (var i = 0; i < formResolution; i++) {
+      curveVertex(x[i] + centerX, y[i] + centerY);
+    }
+
+    // end controlpoint
+    curveVertex(x[formResolution - 1] + centerX, y[formResolution - 1] + centerY);
+    endShape();
+    break;
+  }
+}
+
+function mousePressed() {
+  // init shape on mouse position
+centerX = getMicrobitMouseX();
+centerY = getMicrobitMouseY();
+
+  switch (drawMode) {
+  case 1: // circle
+    var angle = radians(360 / formResolution);
+    var radius = initRadius * random(0.5, 1);
+    for (var i = 0; i < formResolution; i++) {
+      x[i] = cos(angle * i) * radius;
+      y[i] = sin(angle * i) * radius;
+    }
+    break;
+  case 2: // line
+    var radius = initRadius * random(0.5, 5);
+    var angle = random(PI);
+
+    var x1 = cos(angle) * radius;
+    var y1 = sin(angle) * radius;
+    var x2 = cos(angle - PI) * radius;
+    var y2 = sin(angle - PI) * radius;
+    for (var i = 0; i < formResolution; i++) {
+      x[i] = lerp(x1, x2, i / formResolution);
+      y[i] = lerp(y1, y2, i / formResolution);
+    }
+    break;
+  }
+}
+
+function keyReleased() {
+  if (key == 's' || key == 'S') saveCanvas(gd.timestamp(), 'png');
+  if (keyCode == DELETE || keyCode == BACKSPACE) background(255);
+  if (key == '1') filled = false;
+  if (key == '2') filled = true;
+  if (key == '3') drawMode = 1;
+  if (key == '4') drawMode = 2;
+
+  if (keyCode == UP_ARROW) stepSize++;
+  if (keyCode == DOWN_ARROW) stepSize--;
+  stepSize = max(stepSize, 1);
+
+  // pause/play draw loop
+  if (key == 'f' || key == 'F') freeze = !freeze;
+  if (freeze) {
+    noLoop();
+  } else {
+    loop();
+  }
+}
+```
+
+https://github.com/user-attachments/assets/6338e23d-1827-4e4d-ae22-54d5509c4011
+
+
 
 
 
