@@ -75,29 +75,8 @@ En este caso la consola funciona de forma normal, sin errores
 
 ## Actividad 04 
 
-## Actividad 05 
 
-### 1. ¿Qué hace la función concat? ¿Por qué? 
 
-### 2. En la función readSerialData() tenemos un bucle que recorre el buffer solo si este tiene 8 o más bytes ¿Por qué? 
-
-### 3. En el código anterior qué significa 0xaa? 
-
-### 4. En el código anterior qué hace la función shift y la instrucción continue? ¿Por qué?
-
-### 5. Si hay menos de 8 bytes qué hace la instrucción break? ¿Por qué? 
-
-### 6. ¿Cuál es la diferencia entre slice y splice? ¿Por qué se usa splice justo después de slice? 
-
-### 7. A la siguiente parte del código se le conoce como programación funcional ¿Cómo opera la función reduce?
-
-### 8. ¿Por qué se compara el checksum enviado con el calculado? ¿Para qué sirve esto? 
-
-### 9. En el código anterior qué hace la instrucción continue? ¿Por qué? 
-
-### 10. ¿Qué es un DataView? ¿Para qué se usa? 
-
-### 11. ¿Por qué es necesario hacer estas conversiones y no simplemente se toman tal cual los datos del buffer?
 
 
 
