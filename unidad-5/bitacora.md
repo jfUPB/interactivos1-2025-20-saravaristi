@@ -61,6 +61,8 @@ Esta parte es binario 04 c0 fc 04 00 00, luego le sigue esta parte en ASCII 04 c
 
 ### 1. Compara el código de la unidad anterior relacionado con la recepción de los datos seriales que ves ahora. ¿Qué cambios observas? 
 
+En la unidad anterior se utilizaba un codigo que leia los datos en ASCII, donde los datos tenian una longitud variables y para slatar de un paquete al otro se usaba /n, pero en este caso se estan usando un protocolo para datos binarios donde su tamaño es fijo el cual es de 6 bytes
+
 ### 2. ¿Qué ves en la consola? ¿Por qué crees que se produce este error? 
 
 <img width="805" height="106" alt="image" src="https://github.com/user-attachments/assets/32ff3c70-c866-47ff-a1d4-46159a3a869d" />
@@ -70,6 +72,7 @@ En este caso es un error de interpretación de datos, lo que sucede es que los d
 
 <img width="796" height="81" alt="image" src="https://github.com/user-attachments/assets/eb9dcca3-669f-4920-b562-24d0698b391d" />
 
+Se siguen observando los datos recibidos por el microbit en los valore xValue, yValue, aState y bState, pero dentro del codigo se puede ver que es mas robusto y que cuenta con checksum que valida la integridad de los datos, mientras que el programa anterior era mas simple y solo leia los datos pero no los validaba
 
 ### 4. ¿Qué cambios tienen los programas y ¿Qué puedes observar en la consola del editor de p5.js? 
 
@@ -351,6 +354,7 @@ function keyReleased() {
 ```
 
 https://github.com/user-attachments/assets/6338e23d-1827-4e4d-ae22-54d5509c4011
+
 
 
 
