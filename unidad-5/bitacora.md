@@ -64,10 +64,12 @@ Esta parte es binario 04 c0 fc 04 00 00, luego le sigue esta parte en ASCII 04 c
 ### 2. ¿Qué ves en la consola? ¿Por qué crees que se produce este error? 
 
 <img width="805" height="106" alt="image" src="https://github.com/user-attachments/assets/32ff3c70-c866-47ff-a1d4-46159a3a869d" />
+En este caso es un error de interpretación de datos, lo que sucede es que los datos que llegan del microbit como xValue, yValue, aState y bState no son los que el programa espera, ya que el formato de paquete no corresponde o hay un desajuste en el orden de envio y lectura
 
 ### 3. Analiza el código, observa los cambios. Ejecuta y luego observa la consola. ¿Qué ves? 
 
 <img width="796" height="81" alt="image" src="https://github.com/user-attachments/assets/eb9dcca3-669f-4920-b562-24d0698b391d" />
+
 
 ### 4. ¿Qué cambios tienen los programas y ¿Qué puedes observar en la consola del editor de p5.js? 
 
