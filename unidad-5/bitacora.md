@@ -19,9 +19,10 @@ Para este apartado mi nota es 3.4, ya que a pesar de que si hice los ejercicios 
 
 Para este apartado tengo una nota de 3.4, ya que a pesar de que si use terminos tecnicos y explique algunos de ellos, en ciertos ejercicios me falto mucha mas indagación en cuanto a terminos y sus funciones, no utilizo algunos de ellos para las explicaciones y eso hace que no sea tan claras mis respuestas 
 
-### Nota tota:
+### Nota total:
 
 Mi nota final es 4.0 ya que a pesar de que si tengo respuestas claras y procedimientos bien realizados, estos pueden ser mucho mejores, ya que falta mas investigación de terminos, explicaciones con mas fundamento y mas capturas de pantalla que demuestren mis hipotesis
+
 
 
 
