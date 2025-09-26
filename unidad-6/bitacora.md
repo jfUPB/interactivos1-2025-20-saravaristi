@@ -1,4 +1,4 @@
-<img width="435" height="103" alt="image" src="https://github.com/user-attachments/assets/e620c3c8-d150-4589-a545-62bd2eb2a091" />
+
 # Evidencias de la unidad 6
 
 ## Actividad 01
@@ -35,4 +35,5 @@ En el video se ve que con el movimiento de las ventanas se va organizando la ima
 <img width="924" height="949" alt="image" src="https://github.com/user-attachments/assets/1e382a98-11eb-4f81-8eb9-2b45dfa5ca7f" />
 
 Lo que se ve en las imagenes esel codigo pjs de la pagina y el apartado donde verifica el tamaño y la posición de la otra ventana como de la propia ventana para hacer la intereacción y dibujar en pantalla el visual segun los valores de ambas ventanas
+
 
