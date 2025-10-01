@@ -132,4 +132,179 @@ Si funciona y esta esperando a sincronizar datos
 
 ## Actividad 04 
 
+### Abre page2.html en tu navegador (con el servidor corriendo). 
 
+<img width="1044" height="839" alt="image" src="https://github.com/user-attachments/assets/bf9065d3-fca7-40f8-a668-e2f3586f6096" />
+
+### Abre la consola de desarrollador (F12). 
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/2bda9f1b-8ab7-460c-b7a0-7d7849764d29" />
+
+### Refresca la página page2.html. Observa la consola del navegador. ¿Ves algún error relacionado con la conexión? ¿Qué indica? 
+
+<img width="1080" height="408" alt="image" src="https://github.com/user-attachments/assets/3d10dde3-89fb-4878-b702-21f33a1f81f0" />
+
+Este error significa que la pagina web se esta intentando conectar al servidor, pero no encuentra nada escuchando en ese puerto 
+
+### Vuelve a iniciar el servidor y refresca la página. ¿Desaparecen los errores? 
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/7ecb09a7-c5ea-4ba6-97ee-7c985e18302b" />
+
+Los errores desaparecen ya que la pagina si se pudo conectar al servidor 
+
+### Comenta la línea socket.emit(‘win2update’, currentPageData, socket.id); dentro del listener connect. 
+
+<img width="952" height="387" alt="image" src="https://github.com/user-attachments/assets/d48a30d2-f3f5-4b22-ad5b-c98ab498cf41" />
+
+### Mueve la ventana de page2 un poco para que envíe una actualización.
+
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/25aaf17d-f041-40cf-b209-a777fd3cb426" />
+
+### ¿Qué pasó? ¿Por qué? 
+
+Al mover page2 solo se actualiza la posición de esta ventana, pero page1 no actualiza su posición y se queda en la mimsa posición inicial, al menos que page1 se mueva ya que si se manipula esta ventana tanto page1 como page2 se actualizan. Todo esto se debe a que al comentar socket.emit('win2update', currentPageData, socket.id); las actualizaciones de page2 dejan de ser compatibles para page1 por lo que esta no se actualiza segun la posición de page2 y sigue en la misma posición hasta que se mueva 
+
+### Mueve la ventana de page1. Observa la consola del navegador de page2. ¿Qué datos muestra?
+
+<img width="908" height="767" alt="image" src="https://github.com/user-attachments/assets/3f397cc1-d4b3-4ecf-bd2d-0c45d6f175a8" />
+
+Al mover page1 en el consola de page2 se muestran las actualizaciones con su valor en X y Y, el ancho de la ventana y la altura de esta 
+
+### Mueve la ventana de page2. Observa la consola de page1. ¿Qué pasa? ¿Por qué? 
+
+<img width="904" height="766" alt="image" src="https://github.com/user-attachments/assets/429e6e36-6f4b-42d4-ac1e-092467549183" />
+
+Al mover page2 no se muestra ninguna actualización en la consola de page1, esto por que al comentar socket.emit('win2update', currentPageData, socket.id); page1 no recibe actualizaciones de los datos de page2 
+
+### Observa checkWindowPosition() en page2.js y modifica el código del if para comprobar si el código dentreo de este se ejecuta. 
+
+```js
+function checkWindowPosition() {
+    currentPageData = {
+        x: window.screenX,
+        y: window.screenY,
+        width: window.innerWidth,
+        height: window.innerHeight
+    };
+
+    if (currentPageData.x !== previousPageData.x || currentPageData.y !== previousPageData.y || 
+        currentPageData.width !== previousPageData.width || currentPageData.height !== previousPageData.height) {
+
+        console.log("El if se ejecutó. Datos nuevos detectados:", currentPageData);
+
+        point2 = [currentPageData.width / 2, currentPageData.height / 2]
+        socket.emit('win2update', currentPageData, socket.id);
+        previousPageData = currentPageData; 
+    }
+}
+```
+
+### Mueve cada ventana y observa las consolas. 
+
+<img width="1913" height="789" alt="image" src="https://github.com/user-attachments/assets/2f2ef934-d600-470d-9200-91e8e138989b" />
+
+### ¿Qué puedes concluir y por qué? 
+
+Como se ve en las imagenes este mensaje solo de muestra en la consola de page2 ya que la modificacion del codigo solo se hace para  checkWindowPosition( de page2 y eso comprueba que el if si se esta ejecutando dentro del programa a la hora de mover page2 
+
+### Cambia el background(220) para que dependa de la distancia entre las ventanas. Puedes calcular la magnitud del resultingVector usando let distancia = resultingVector.mag(); y luego usa map() para convertir esa distancia a un valor de gris o color. background(map(distancia, 0, 1000, 255, 0)); (ajusta el rango 0-1000 según sea necesario). 
+
+```js
+function draw() {
+    let vector2 = createVector(remotePageData.x, remotePageData.y);
+    let vector1 = createVector(currentPageData.x, currentPageData.y);
+    let resultingVector = createVector(vector2.x - vector1.x, vector2.y - vector1.y);
+
+    let distancia = resultingVector.mag();
+
+    let fondo = map(distancia, 0, 1000, 255, 0);
+
+    background(fondo);
+
+    if (!isConnected) {
+        showStatus('Conectando al servidor...', color(255, 165, 0));
+        return;
+    }
+
+    if (!hasRemoteData) {
+        showStatus('Esperando conexión de la otra ventana...', color(255, 165, 0));
+        return;
+    }
+
+    if (!isFullySynced) {
+        showStatus('Sincronizando datos...', color(255, 165, 0));
+        return;
+    }
+
+    drawCircle(point2[0], point2[1]);
+    checkWindowPosition();
+
+    stroke(50);
+    strokeWeight(20);
+    drawCircle(resultingVector.x + remotePageData.width / 2, resultingVector.y + remotePageData.height / 2);
+    line(point2[0], point2[1], resultingVector.x + remotePageData.width / 2, resultingVector.y + remotePageData.height / 2);
+}
+
+```
+https://github.com/user-attachments/assets/159c404a-1396-49fa-aed8-436091e70721
+
+### Inventa otra modificación creativa.
+
+```js
+function draw() {
+    let vector2 = createVector(remotePageData.x, remotePageData.y);
+    let vector1 = createVector(currentPageData.x, currentPageData.y);
+    let resultingVector = createVector(vector2.x - vector1.x, vector2.y - vector1.y);
+
+    let distancia = resultingVector.mag();
+
+    let fondo = map(distancia, 0, 1000, 255, 0);
+    background(fondo);
+
+    if (!isConnected) {
+        showStatus('Conectando al servidor...', color(255, 165, 0));
+        return;
+    }
+
+    if (!hasRemoteData) {
+        showStatus('Esperando conexión de la otra ventana...', color(255, 165, 0));
+        return;
+    }
+
+    if (!isFullySynced) {
+        showStatus('Sincronizando datos...', color(255, 165, 0));
+        return;
+    }
+
+    let diametro = map(distancia, 0, 1000, 200, 50); 
+    // Ajusta valores (200 grande cerca, 50 pequeño lejos)
+
+    drawCircle(point2[0], point2[1], diametro);
+
+    checkWindowPosition();
+
+    stroke(50);
+    strokeWeight(20);
+
+    drawCircle(
+        resultingVector.x + remotePageData.width / 2,
+        resultingVector.y + remotePageData.height / 2,
+        diametro
+    );
+    line(
+        point2[0], point2[1],
+        resultingVector.x + remotePageData.width / 2,
+        resultingVector.y + remotePageData.height / 2
+    );
+}
+
+function drawCircle(x, y, d) {
+    fill(255, 0, 0);
+    ellipse(x, y, d, d);
+}
+
+```
+
+https://github.com/user-attachments/assets/f388d1ec-082d-467a-b45b-87e7bfc2dd40
+
+Hice una modificiación al codigo para que entre mas lejos estuviesen una pagina de la otra el tramaño del circulo iba creciendo o decreciendo segun esta distancia
