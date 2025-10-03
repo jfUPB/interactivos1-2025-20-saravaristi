@@ -650,6 +650,7 @@ https://github.com/user-attachments/assets/3887e925-98d0-4522-b31b-82bff708355a
 
 ### Autoevaluación 
 
-Creo que en este caso mi auto evalución es de 4.5 ya que a pesar de haber hecho todas las actividades y haber comprendido los conceptos de la unidad, a la hora de ponerlo en practica tuve unos cuantos problemas con el codigo del page1.html, page2.hmtl, page1.js y page2.js los que me complicaron la solución del problema y tuve que recurri a mas investigación para poder solucionar el conflicto y hacer que el programa funcionara correctamente, ademas siento que algunos de los conceptos aprendidos me son claros pero no sabria ponerlos en practica sin algun ejemplo previo, lo que creo que le resta a la nota final ya que la idea es saber todos los conceptos y poderlos aplicar si es necesario
+Creo que en este caso mi auto evalución es de 4.6 ya que a pesar de haber hecho todas las actividades y haber comprendido los conceptos de la unidad, a la hora de ponerlo en practica tuve unos cuantos problemas con el codigo del page1.html, page2.hmtl, page1.js y page2.js los que me complicaron la solución del problema y tuve que recurri a mas investigación para poder solucionar el conflicto y hacer que el programa funcionara correctamente, ademas siento que algunos de los conceptos aprendidos me son claros pero no sabria ponerlos en practica sin algun ejemplo previo, lo que creo que le resta a la nota final ya que la idea es saber todos los conceptos y poderlos aplicar si es necesario
+
 
 
