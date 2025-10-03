@@ -38,8 +38,62 @@ Lo que se ve en las imagenes es el codigo pjs de la pagina y el apartado donde v
 
 ## Actividad 02 
 
+### Piensa en cómo te conectas a Internet en casa o en la Universidad. ¿Usas Wi-Fi? ¿Un cable de red? Eso es simplemente tu “rampa de acceso” a la gran red de carreteras. ¿Qué pasaría si esa rampa se corta? Anota tus ideas.
+
+En ambos casos utilizo Wi-fi, cuando esa gran red se corta los datos no pueden ser recibidos por lo dispositivos conectados al servidor del internet y no se leen 
+
+### ¿Puedes identificar otros ejemplos de relaciones Cliente-Servidor en tu vida diaria (no necesariamente digitales)? Por ejemplo, al pedir comida en un restaurante. ¿Quién es el cliente y quién el servidor? ¿Qué se pide y qué se entrega? 
+
+Una relación cliente servidor puede ser una consulta medica donde el cliente es el paciente y el servidor es el doctor quuien procesa la información y le entrega un diagnostico al paciente 
+
+### Toma la URL de tu sitio web favorito. Intenta identificar el protocolo, el nombre de dominio y la ruta (si la hay). ¿Qué crees que pasa si solo escribes el nombre de dominio (ej. www.google.com) sin una ruta específica? ¿Qué “página por defecto” crees que te envía el servidor? 
+
+En este caso a voy a usar como ejemplo https://co.pinterest.com/, en este caso el protocolo es https:// el cual es un protocolo que utiliza cifrado seguro , luego el subdominio es co ya que pinterest tiene subdominios para cada pais y en el caso de Colombia es co, el nombre del dominio como tal es pinterest.com y la ruta es / pero como no hay nada despues de eso esa es la raiz del sitio. 
+Si solo se escribe del dominio solo te lleva a la pagina principal de pinterest 
+
+### Compara HTTP con los protocolos seriales que usaste. 
 
 
+### ¿Qué similitudes encuentras? 
+
+Ambos son protocolos de comunicación que establecen un conjunto de reglas claras para que las entidades puedan conectarse y recibir datos, por ello se necesita que ambas partes entiendan el mismo protocolo para que esto funcione sin errores
+
+### ¿Qué diferencias clave ves? 
+
+La seguridad mas que nada, ya que seria si brinda seguridad pero depende de la conexión directa y no tiene casi seguridad, mientras que HTTP puede usar HTTPS para la gestion de errores mas elaborada
+
+### ¿Por qué crees que HTTP necesita ser más complejo que un simple envío de bytes como hacías con el micro:bit?
+
+Porque necesita manejar errores, debe de indicar el tipo de archivo que se esta mandando y tiene que identificar el recurso que se esta pidiendo 
+
+### ¿Qué parte crees que es HTML (ej. los campos de texto, el botón)? 
+
+El HTML son los campos de texto y los botones, es basicamennte lo que define que qelementos existen y en que orden aparecen 
+
+### ¿Qué parte es CSS (ej. el color del botón, el tipo de letra)? 
+
+El CSS es toda la parte visual, desde el color del texto, el tamaño y el tipo de fuente
+
+### ¿Qué parte es JavaScript (ej. la comprobación de si escribiste algo antes de enviar, el mensaje de “contraseña incorrecta” que aparece sin recargar la página)? 
+
+Es toda la interactividad del programa, lo que controla que pasa cuando se escribe en campos de texto y lo que pasa al presionar un boton 
+
+### ¿Qué ventajas crees que tiene el modelo basado en eventos para una interfaz de usuario web? 
+
+Es mucho mas facil de manejar, no consume recursos inecesarios y tiene una mejor experencia de usuario
+
+### ¿Sería eficiente tener un bucle draw() redibujando toda la página 60 veces por segundo si nada ha cambiado? 
+
+De hecho no ya que se deberia de dibujar la pagina unas 60 veces por segundo aun que no haya cambios 
+
+### ¿Por qué crees que podría ser útil usar JavaScript tanto en el cliente (navegador) como en el servidor? ¿Se te ocurre alguna ventaja para los desarrolladores? 
+
+Es muy útil porque permite trabajar con un solo lenguaje en todo el proyecto, es mucho mas rapido y se puyeden reutilizar secciones del codigo 
+
+### Resume con tus propias palabras la diferencia fundamental entre una comunicación HTTP tradicional y una comunicación usando WebSockets/Socket.IO. ¿En qué tipo de aplicaciones has visto o podrías imaginar que se usa esta comunicación en tiempo real? 
+
+La comunicación HTTP tradicional funciona con el modelo de pedido y respuesta ya que el navegador siempre solicita información y el servidor simplemente responde, mientras que con websockets y socket.IO se establece una conexión permanente entre cliente y servidor, que permite que ambos envíen y reciban mensajes en tiempo real sin necesidad de nuevas solicitudes
+ 
 ## Actividad 03 
 
 ### Cambia la primera ruta de /page1 a /pagina_uno. 
@@ -326,6 +380,276 @@ Cuando logre que el codigo funcionara agregando page1.js y page2.js a public en 
 
 <img width="1838" height="918" alt="image" src="https://github.com/user-attachments/assets/29b92b25-1e73-45ae-99f3-d8b7426f84c2" />
 
-Ya luego cambie la parte visual
+Ya luego cambie la parte visual y se ve de esta forma del programa
 
-### Codigo
+<img width="1916" height="953" alt="image" src="https://github.com/user-attachments/assets/31ba5a80-d02b-489d-9d3a-18448a9889df" />
+
+### Codigo 
+
+package.json
+
+```js
+{
+  "name": "emoji-chat",
+  "version": "1.0.0",
+  "description": "Chat visual con emojis usando Socket.IO",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2"
+  }
+}
+```
+
+server.js
+
+```js
+const express = require('express');
+const http = require('http');
+const { Server } = require('socket.io');
+const path = require('path');
+
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server);
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/page1.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'page1.html'));
+});
+
+app.get('/page2.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'page2.html'));
+});
+
+io.on('connection', (socket) => {
+  console.log('Usuario conectado:', socket.id);
+
+  socket.on('sendEmoji', (data) => {
+    console.log(`Emoji recibido: ${data.emoji} desde ${data.sender}`);
+    io.emit('newEmoji', data);
+  });
+
+  socket.on('disconnect', () => {
+    console.log('Usuario desconectado:', socket.id);
+  });
+});
+
+const PORT = 3000;
+server.listen(PORT, () => {
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+});
+```
+
+page1.html 
+
+```js
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Page 1 - Emoji Chat</title>
+  <style>
+    body { font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; background: #f7f7f7; margin: 0; padding: 20px; }
+    h2 { margin-bottom: 15px; }
+
+    #emojiContainer {
+      border: 1px solid #ccc;
+      background: #fff;
+      width: 80%;
+      height: 350px;
+      overflow-y: auto;
+      margin-top: 20px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      border-radius: 12px;
+      box-shadow: 0px 3px 8px rgba(0,0,0,0.15);
+    }
+
+    .emoji-btn {
+      font-size: 2rem;
+      cursor: pointer;
+      margin: 5px;
+      padding: 5px 10px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      background: #fafafa;
+      transition: background 0.2s;
+    }
+    .emoji-btn:hover { background: #eee; }
+
+    .bubble {
+      display: inline-block;
+      padding: 10px 15px;
+      border-radius: 20px;
+      margin: 5px 0;
+      max-width: 70px;
+      text-align: center;
+      font-size: 2rem;
+      word-wrap: break-word;
+    }
+    .left { background: #e1f5fe; align-self: flex-start; }
+    .right { background: #c8e6c9; align-self: flex-end; }
+  </style>
+</head>
+<body>
+  <h2>Page 1</h2>
+  <div>
+    <span class="emoji-btn">😀</span>
+    <span class="emoji-btn">😂</span>
+    <span class="emoji-btn">😍</span>
+    <span class="emoji-btn">😎</span>
+    <span class="emoji-btn">👍</span>
+  </div>
+  <div id="emojiContainer"></div>
+
+  <script src="/socket.io.js"></script>
+  <script src="page1.js"></script>
+</body>
+</html>
+```
+
+page2.html 
+```js
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Page 2 - Emoji Chat</title>
+  <style>
+    body { font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; background: #f7f7f7; margin: 0; padding: 20px; }
+    h2 { margin-bottom: 15px; }
+
+    #emojiContainer {
+      border: 1px solid #ccc;
+      background: #fff;
+      width: 80%;
+      height: 350px;
+      overflow-y: auto;
+      margin-top: 20px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      border-radius: 12px;
+      box-shadow: 0px 3px 8px rgba(0,0,0,0.15);
+    }
+
+    .emoji-btn {
+      font-size: 2rem;
+      cursor: pointer;
+      margin: 5px;
+      padding: 5px 10px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      background: #fafafa;
+      transition: background 0.2s;
+    }
+    .emoji-btn:hover { background: #eee; }
+
+    .bubble {
+      display: inline-block;
+      padding: 10px 15px;
+      border-radius: 20px;
+      margin: 5px 0;
+      max-width: 70px;
+      text-align: center;
+      font-size: 2rem;
+      word-wrap: break-word;
+    }
+    .left { background: #e1f5fe; align-self: flex-start; }
+    .right { background: #c8e6c9; align-self: flex-end; }
+  </style>
+</head>
+<body>
+  <h2>Page 2</h2>
+  <div>
+    <span class="emoji-btn">🔥</span>
+    <span class="emoji-btn">🥳</span>
+    <span class="emoji-btn">💡</span>
+    <span class="emoji-btn">🎉</span>
+    <span class="emoji-btn">💀</span>
+  </div>
+  <div id="emojiContainer"></div>
+
+  <script src="/socket.io.js"></script>
+  <script src="page2.js"></script>
+</body>
+</html>
+```
+
+page1.js 
+
+```js
+const socket = io();
+
+const emojiContainer = document.getElementById('emojiContainer');
+const emojiButtons = document.querySelectorAll('.emoji-btn');
+
+emojiButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const emoji = btn.textContent;
+    socket.emit('sendEmoji', { emoji, sender: 'page1' });
+  });
+});
+
+socket.on('newEmoji', (data) => {
+  const div = document.createElement('div');
+  div.textContent = data.emoji;
+  div.classList.add('bubble');
+
+  if (data.sender === 'page1') {
+    div.classList.add('right');
+  } else {
+    div.classList.add('left');
+  }
+
+  emojiContainer.appendChild(div);
+  emojiContainer.scrollTop = emojiContainer.scrollHeight;
+});
+```
+
+page2.js 
+
+```js
+const socket = io();
+
+const emojiContainer = document.getElementById('emojiContainer');
+const emojiButtons = document.querySelectorAll('.emoji-btn');
+
+emojiButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const emoji = btn.textContent;
+    socket.emit('sendEmoji', { emoji, sender: 'page2' });
+  });
+});
+
+socket.on('newEmoji', (data) => {
+  const div = document.createElement('div');
+  div.textContent = data.emoji;
+  div.classList.add('bubble');
+
+  if (data.sender === 'page2') {
+    div.classList.add('right');
+  } else {
+    div.classList.add('left');
+  }
+
+  emojiContainer.appendChild(div);
+  emojiContainer.scrollTop = emojiContainer.scrollHeight;
+});
+```
+
+### Video demostrativo 
+
+https://github.com/user-attachments/assets/3887e925-98d0-4522-b31b-82bff708355a
+
+### Autoevaluación 
+
+Creo que en este caso mi auto evalución es de 4.5 ya que a pesar de haber hecho todas las actividades y haber comprendido los conceptos de la unidad, a la hora de ponerlo en practica tuve unos cuantos problemas con el codigo del page1.html, page2.hmtl, page1.js y page2.js los que me complicaron la solución del problema y tuve que recurri a mas investigación para poder solucionar el conflicto y hacer que el programa funcionara correctamente, ademas siento que algunos de los conceptos aprendidos me son claros pero no sabria ponerlos en practica sin algun ejemplo previo, lo que creo que le resta a la nota final ya que la idea es saber todos los conceptos y poderlos aplicar si es necesario
+
+
