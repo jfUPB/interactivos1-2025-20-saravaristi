@@ -38,6 +38,8 @@ Lo que se ve en las imagenes es el codigo pjs de la pagina y el apartado donde v
 
 ## Actividad 02 
 
+
+
 ## Actividad 03 
 
 ### Cambia la primera ruta de /page1 a /pagina_uno. 
@@ -304,7 +306,26 @@ function drawCircle(x, y, d) {
 }
 
 ```
-
 https://github.com/user-attachments/assets/f388d1ec-082d-467a-b45b-87e7bfc2dd40
 
 Hice una modificiación al codigo para que entre mas lejos estuviesen una pagina de la otra el tramaño del circulo iba creciendo o decreciendo segun esta distancia
+
+## Actividad 05
+
+### Explica tu idea y realiza algunos bocetos. 
+
+Mi idea era hacer dos paginas donde ambas tenian emojis y simulaban una conversación ya que al presionar los emojis de page1 deberian de aparecen en page2 en tiempo real y lo mismo con los emojis de page2 en page1
+
+### Proceso 
+
+En realidad tuve bastantes problemas a la hora de crear el codigo ya que muchas veces o las paginas o cargaban o no interactuan unas con otras, por ejemplo aqui que aunque se presionen los emojis estos no se mostraban en tiempo real en la otra pagina 
+
+<img width="1843" height="959" alt="image" src="https://github.com/user-attachments/assets/0c6a5cb0-815a-442b-bbde-a5e1fd9d701e" />
+
+Cuando logre que el codigo funcionara agregando page1.js y page2.js a public en vez de view se veia algo asi 
+
+<img width="1838" height="918" alt="image" src="https://github.com/user-attachments/assets/29b92b25-1e73-45ae-99f3-d8b7426f84c2" />
+
+Ya luego cambie la parte visual
+
+### Codigo
