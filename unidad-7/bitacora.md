@@ -53,12 +53,15 @@ Primero los eventos wue envian desde el movil es touchstart, touchmove y touchen
 
 ### Si conectaras dos computadores de escritorio y un móvil a este servidor, y movieras el dedo en el móvil, ¿Quién recibiría el mensaje retransmitido por el servidor? ¿Por qué? 
 
-
+Los dos computadores son quienes reciben la retransmición porque socket.broadcast.emit envia el evento a todos menos al celular que es el emisor
 
 ### ¿Qué información útil te proporcionan los mensajes console.log en el servidor durante la ejecución? 
 
+En el codigo console.log informa cuando hay un nuevo cliente conectado al servidor, muestra cada mensaje qque se proporciona en el servidor como los cambios a la hora de mover el dedo en el panel de la version movil y avisa cuanto un cliente se desconecta del servidor
+
+## Actividad 04  
+
+### Realiza un diagrama donde muestres el flujo completo de datos y eventos entre los tres componentes: móvil, servidor y escritorio. Puedes ilustrar con un ejemplo de coordenadas táctiles (x, y) y cómo viajan a través del sistema. 
 
 
-## Actividad 04 
 
-### Realiza un diagrama donde muestres el flujo completo de datos y eventos entre los tres componentes: móvil, servidor y escritorio. Puedes ilustrar con un ejemplo de coordenadas táctiles (x, y) y cómo viajan a través del sistema.
