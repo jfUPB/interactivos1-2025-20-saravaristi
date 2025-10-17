@@ -63,7 +63,7 @@ En el codigo console.log informa cuando hay un nuevo cliente conectado al servid
 
 ### Realiza un diagrama donde muestres el flujo completo de datos y eventos entre los tres componentes: móvil, servidor y escritorio. Puedes ilustrar con un ejemplo de coordenadas táctiles (x, y) y cómo viajan a través del sistema. 
 
-<img width="733" height="316" alt="image" src="https://github.com/user-attachments/assets/9291815a-9719-4a4b-a7c1-310af7910a80" />
+<img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/3686df21-84f3-4679-a3b2-286ba8e46789" />
 
 ## Actividad 05 
 
@@ -106,4 +106,5 @@ https://github.com/user-attachments/assets/a62a092f-0233-4db3-abe7-dfc6f29cf3b4
 ## Autoevaluación 
 
 Como tal esta vez yo me pongo una nota de 4.0 ya que a pesar de que hice todos los ejercicios en realidad tuve bastantes problemas a la hora de hacer el codigo para la actividad 5 ya que esta no funciono demasiadas veces ya sea por fallos en server.js, fallas con los visuales y el audio o simplemente codigos que no funcionaban, a pesar de que hice lo posibile para solucionarlos muchas veces me toco hacer todo desde cero y aun asi no funciono
+
 
