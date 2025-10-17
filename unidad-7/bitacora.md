@@ -63,5 +63,47 @@ En el codigo console.log informa cuando hay un nuevo cliente conectado al servid
 
 ### Realiza un diagrama donde muestres el flujo completo de datos y eventos entre los tres componentes: móvil, servidor y escritorio. Puedes ilustrar con un ejemplo de coordenadas táctiles (x, y) y cómo viajan a través del sistema. 
 
+<img width="733" height="316" alt="image" src="https://github.com/user-attachments/assets/9291815a-9719-4a4b-a7c1-310af7910a80" />
 
+## Actividad 05 
+
+### Idea
+
+Mi idea era hacer unos visuales donde los fondos fueran gifs y se pudieran cambiar al usar el touch de la pantalla tactil, los visuales son fotos png que se mueven dependiendo de las frecuencias altas y bajas 
+
+### Codigo 
+```js
+
+```
+
+```js
+
+```
+
+
+```js
+
+````
+
+### Capturas
+
+<img width="753" height="360" alt="image" src="https://github.com/user-attachments/assets/1e1f2e0e-c390-4fc9-8324-483cff142207" />
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6507ff00-de9b-4fa7-ad5b-3c951f2853e4" />
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8cd88120-f171-4b68-bd1f-35617ebd3f9c" />
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/b17b5c6c-82c5-4dac-85f6-a238e41d952f" />
+
+<img width="801" height="332" alt="image" src="https://github.com/user-attachments/assets/b55ad15a-d7a4-445f-b104-7e90636e16ef" />
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/1b8113ec-9cc0-4de4-b65f-0f3dba5d5839" />
+
+### Como se debia de ver la idea  
+
+https://github.com/user-attachments/assets/a62a092f-0233-4db3-abe7-dfc6f29cf3b4
+
+## Autoevaluación 
+
+Como tal esta vez yo me pongo una nota de 4.0 ya que a pesar de que hice todos los ejercicios en realidad tuve bastantes problemas a la hora de hacer el codigo para la actividad 5 ya que esta no funciono demasiadas veces ya sea por fallos en server.js, fallas con los visuales y el audio o simplemente codigos que no funcionaban, a pesar de que hice lo posibile para solucionarlos muchas veces me toco hacer todo desde cero y aun asi no funciono
 
