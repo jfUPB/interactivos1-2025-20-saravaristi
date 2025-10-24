@@ -19,6 +19,10 @@ El movil a partir de touch controla los fondos del programa, cada vez que el usu
 
 ## Actividad 02 
 
+### Proceso 
+
+En este caso solo implemente los botones del Microbit al programa con ayuda de ChatGPT que me dio los codigos para el microbit y el bloque faltante para el Sketch,js del Desktop y el Index.html del Desktop, todos los demas codigos se mantuvieron iguales, fue un proceso facil y no se presentaron errores
+
 ### Codigos 
 
 ### Microbit 
@@ -626,6 +630,7 @@ function touchStarted(){
   return false;
 }
 ```
+
 
 
 
