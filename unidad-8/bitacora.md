@@ -7,9 +7,9 @@
 
 Me inspire mas que nada en los juegos de baile ritmicos de arcade como dance dance revolution donde suena la musica y se tiene videos de fondo y en el plano principal se encuentran las flechas para que el jugador presione los botones correctos, esta inspiracion no viene de lo funcional sino de lo visual, me gusto la idea de varios elementos animados a la vez y decidi hacer mi diseño basado en ello 
 
-<img width="640" height="480" alt="image" src="https://github.com/user-attachments/assets/0a5f9797-2daf-4ddb-8793-66c4b0635eff" />
+<img width="695" height="520" alt="image" src="https://github.com/user-attachments/assets/1e962708-e457-451b-b37a-a1a5c85fe937" />
 
-<img width="640" height="480" alt="image" src="https://github.com/user-attachments/assets/4e17d541-1d68-4e08-85c4-d44a2abfc73e" />
+<img width="699" height="526" alt="image" src="https://github.com/user-attachments/assets/744e6e5f-8a40-4c83-9bd4-b90d4c0bfcce" />
 
 ### Define el concepto de las visuales que quieres crear. 
 
@@ -640,6 +640,7 @@ function touchStarted(){
   return false;
 }
 ```
+
 
 
 
