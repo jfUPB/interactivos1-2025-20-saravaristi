@@ -5,6 +5,12 @@
 
 ### Documenta los referentes visuales que te inspiren. 
 
+Me inspire mas que nada en los juegos de baile ritmicos de arcade como dance dance revolution donde suena la musica y se tiene videos de fondo y en el plano principal se encuentran las flechas para que el jugador presione los botones correctos, esta inspiracion no viene de lo funcional sino de lo visual, me gusto la idea de varios elementos animados a la vez y decidi hacer mi diseño basado en ello 
+
+<img width="640" height="480" alt="image" src="https://github.com/user-attachments/assets/0a5f9797-2daf-4ddb-8793-66c4b0635eff" />
+
+<img width="640" height="480" alt="image" src="https://github.com/user-attachments/assets/4e17d541-1d68-4e08-85c4-d44a2abfc73e" />
+
 ### Define el concepto de las visuales que quieres crear. 
 
 Mi idea era hacer unos visuales donde los fondos fueran gifs y se pudieran cambiar al usar el touch de la pantalla tactil, los visuales son fotos png que se mueven dependiendo de las frecuencias altas y bajas, en este caso el movil funciona para cambiar los fondos, y el microbit funciona para cambiar las visuales por 2 paquetes diferentes de visuales donde cada uno le corresponde al boton A y B
@@ -14,6 +20,10 @@ Mi idea era hacer unos visuales donde los fondos fueran gifs y se pudieran cambi
 El movil a partir de touch controla los fondos del programa, cada vez que el usuario toca la pantalla del celular se cambia entre 3 fondos secuencialmente, en el caso de los botones A y B del microbit cada uno corresponde a un paquete de visuales donde cada uno tiene su paquete prederterminado, al presionar A los visuales son los del paquete 1 y al presionar B los visuales son los del paquete 2
 
 ### Haz un bocetos de todas las interfaces del sistema. 
+
+Hice un video del diseño base para asi guiarme a la hora de crear el codigo  
+
+https://github.com/user-attachments/assets/e5fcada3-7b82-4a3f-93af-0b129640a481
 
 ### Haz un diagrama que explique cómo se comunicarán los diferentes componentes del sistema.
 
@@ -630,6 +640,7 @@ function touchStarted(){
   return false;
 }
 ```
+
 
 
 
