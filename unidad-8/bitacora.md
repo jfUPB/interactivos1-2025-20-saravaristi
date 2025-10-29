@@ -27,6 +27,8 @@ https://github.com/user-attachments/assets/e5fcada3-7b82-4a3f-93af-0b129640a481
 
 ### Haz un diagrama que explique cómo se comunicarán los diferentes componentes del sistema.
 
+<img width="837" height="719" alt="image" src="https://github.com/user-attachments/assets/a75b5514-4610-422f-916d-40b773e750eb" />
+
 ## Actividad 02 
 
 ### Proceso 
@@ -640,6 +642,7 @@ function touchStarted(){
   return false;
 }
 ```
+
 
 
 
