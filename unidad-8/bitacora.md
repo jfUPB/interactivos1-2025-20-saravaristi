@@ -643,6 +643,9 @@ function touchStarted(){
 }
 ```
 
+## Autoevaluación 
+
+En esta unidad considero que mi nota es de 5.0 ya que toda la unidad esta completa y se logro implementar de forma correcta el microbit y los protocolos al los conceptos ya trabajados en la unidad anterior en el codigo de las visuales generaitvas que se habian trabajado antes, no se tuvo complicaciones a la hora de implementar el microbit con sus funciones al programa y se pudo resolver las actividades de la forma propuesta
 
 
 
